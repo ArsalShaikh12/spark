@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  spark-ds-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/data         # Mount the data directory
+      - ./app:/app           # Mount the app directory
+    ports:
+      - "4040:4040"          # Expose Spark's web UI
+    command: ["spark-submit", "/app/spark_ds_app.py"]
